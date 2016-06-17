@@ -7,7 +7,7 @@
     <title>订单列表</title>
     <link href="../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../resources/css/sale.css" rel="stylesheet"/>
-    <script src="../../js/zepto.min.js"></script>
+    <script src="../../resources/js/zepto.min.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
@@ -82,3 +82,15 @@
 
 </body>
 </html>
+
+<script>
+    $('.order_status').on('click',function(){
+        $('.order_select_menu').css('display','block')
+    })
+
+    $('.order_select_menu li').on('click',function(e){
+        $('.order_status').find('span').text($(this).text());
+        $('.order_select_menu').css('display','none')
+    })
+
+</script>

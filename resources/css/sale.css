@@ -464,10 +464,12 @@ body{
 .order_select_menu{
     position: absolute;
     width: 100%;
+    display: none;
+    background-color: #fff;
 }
 
 .order_select_menu li{
-    display: none;border-bottom: 1px solid #D15829;color: #D15829;font-size: 36px;line-height: 94px;text-align: center;cursor: pointer;
+    border-bottom: 1px solid #D15829;color: #D15829;font-size: 36px;line-height: 94px;text-align: center;cursor: pointer;
 }
 
 .order_select_menu li:hover{
@@ -514,4 +516,51 @@ body{
 
 .tr{
     text-align: right;
+}
+
+.order_item_box{
+    border-bottom: 1px solid #C4C4C4;box-sizing: border-box;padding: 0 40px;
+}
+
+.order_number{
+    font-size: 36px;font-weight: bold;color: #D15829;line-height: 94px;
+}
+
+.wait_send_status{
+    margin-top: 15px;font-size: 32px;color: #FDBE3B;height: 63px;width: 122px;border: 1px solid #FDBE3B;border-radius: 5px;float: right;line-height: 63px;text-align: center;
+}
+
+.fs24{
+    font-size: 24px;
+    color: #6F6F6F;
+}
+
+.mb30{
+    margin-bottom: 30px;
+}
+
+.order_list_info_P{
+    color:#6F6F6F;
+    font-size: 36px;
+    margin-top: 30px;
+}
+
+.wuliu_select{
+    border: 1px solid #797979;width: 330px;height: 70px;color: #6e6e6e;font-size: 36px;line-height: 70px;
+}
+
+.express_number_input{
+    border: 1px solid #797979;font-size: 36px;color: #6F6F6F;border-radius: 5px;width: 100%;line-height: 70px;margin-top: 20px;
+}
+
+.contact_box{
+    padding: 30px 40px;font-size: 36px;color: #6f6f6f;
+}
+
+.weixin_img{
+    border: 1px solid #259F25;width: 195px;height: 126px;text-align: center;line-height: 126px;border-radius: 15px;
+}
+
+.confirm_send{
+    text-align: center;margin: 30px 40px 110px;background-color: #FDBE3B;font-size: 32px;line-height: 88px;border-radius: 5px;color: #fff
 }
