@@ -7,6 +7,7 @@
     <title>待退货</title>
     <link href="../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../resources/js/zepto.min.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
@@ -54,13 +55,13 @@
         <span>北京市朝阳区广顺北大街20号1单元2层201室</span>
     </p>
     <div class="order_list_info_P clearfix">
-        <div class="sale_l mt15">物流快递：</div>
+        <div class="sale_l mt15 width180">物流快递：</div>
         <div class="search_express_info_btn">查看物流</div>
         <div class="express_class"><input type="text" value="顺丰快递"/></div>
     </div>
 
     <div class="order_list_info_P mb30 clearfix">
-        <p class="sale_l mt15">快递单号：</p>
+        <p class="sale_l mt15 width180">快递单号：</p>
         <div class="ml180"><input type="text" class="express_number_input" value="4233235123412341234"/></div>
     </div>
 
@@ -95,17 +96,47 @@
 </div>
 
 <div class="mask">
-    <div class="mask_container">
+    <div class="mask_container" id="agree_mask">
         <p class="mt50">同意退货</p>
-        <p class="mask_agree_info" style="display: flex">货款将直接返还至用户，请确认您已收到货品后操作。</p>
+        <p class="mask_agree_info">货款将直接返还至用户，请确认您已收到货品后操作。</p>
         <div class="mask_bottom">
             <div class="mask_confirm">确认退货</div>
             <div class="mask_cancel">取消</div>
         </div>
+    </div>
 
+    <div class="mask_container" id="not_agree_mask">
+        <p class="mt50">不予退货</p>
+        <textarea class="not_agree_reason" placeholder="请填写不退货原因，不写确认按钮不可点击。"></textarea>
+        <div class="mask_bottom">
+            <div class="mask_confirm">确认</div>
+            <div class="mask_cancel">取消</div>
+        </div>
     </div>
 
 </div>
 
 </body>
 </html>
+
+<script>
+    $('.agree').on('click',function(){
+        $('.mask').css('display','block');
+        $('#agree_mask').css('display','block');
+    });
+
+    $('.not_agree').on('click',function(){
+        $('.mask').css('display','block');
+        $('#not_agree_mask').css('display','block');
+    })
+
+    $('#agree_mask .mask_confirm').on('click',function(){
+        $('.mask').css('display','none');
+        $('#not_agree_mask').css('display','none');
+    })
+
+    $('#not_agree_mask .mask_confirm').on('click',function(){
+        $('.mask').css('display','none');
+        $('#not_agree_mask').css('display','none');
+    })
+</script>
