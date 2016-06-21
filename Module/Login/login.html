@@ -7,27 +7,59 @@
     <title>登录</title>
     <link href="../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../resources/js/zepto.min.js"></script>
 </head>
 <body class="bg_orange">
 <h1 class="login_title">登录</h1>
 
 <div class="login_item">
-    <input type="text" class="login_input" placeholder="用户名（手机号）"/>
+    <input type="text" class="login_input" id="name" placeholder="用户名（手机号）"/>
 </div>
 
 <div class="login_item">
-    <input type="text" class="login_input" placeholder="密码"/>
+    <input type="password" class="login_input" id="pwd" placeholder="密码"/>
 </div>
 
 <div class="clearfix login_btn_box">
-    <div class="login_btn sale_l">代理登录</div>
-    <div class="login_btn sale_r">代销登陆</div>
+    <div class="login_btn sale_l" id="dlLogin">代理登录</div>
+    <div class="login_btn sale_r" id="dxLogin">代销登陆</div>
 </div>
 
 <div class="clearfix login_item">
-    <a class="sale_l login_other_oper">注册新用户</a>
-    <a class="sale_r login_other_oper">忘记密码？</a>
+    <a class="sale_l login_other_oper" href="./register.html">注册新用户</a>
+    <a class="sale_r login_other_oper" href="./forget_pwd.html">忘记密码？</a>
 </div>
-
 </body>
 </html>
+<script>
+    function doLogin(cb){
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+
+        $.ajax({
+            url:"api/user/doLogin",
+            type:"post",
+            data:{userPhone:name,password:pwd},
+            success:function(d){
+                d = eval("("+d+")");
+                if(d.status.code == "1"){
+                    cb(d.data);
+                }else{
+                    alert(d.status.message)
+                }
+            }
+        })
+    }
+
+    $("#dlLogin").click(function(){
+        doLogin(function(){
+
+        })
+    })
+    $("#dxLogin").click(function(){
+        doLogin(function(){
+
+        })
+    })
+
+</script>

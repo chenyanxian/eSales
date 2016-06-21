@@ -340,7 +340,9 @@ body{
 }
 
 .factor_top{
+/*
     height: 264px;
+*/
     color: #fff;
     font-size: 32px;
     padding: 30px 40px;
@@ -371,12 +373,12 @@ body{
     font-size: 48px;color: #FDBE3B;margin: 10px 0;
 }
 
-.factor_top_right div:nth-child(3){
+.factor_top_right .btn{
     width: 165px;height: 70px;text-align: center;line-height: 70px;background-color: #FDBE3B;border-radius: 5px;box-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
 
 .factor_top_center{
-    margin-left: 190px;margin-right: 200px;
+    margin-left: 180px;margin-right: 190px;
 }
 
 .factor_top_center p{
@@ -590,12 +592,12 @@ body{
     margin-left: 180px;
 }
 
-.agree{
-    float: left;width: 319px;line-height: 88px;background-color: #259F25;color: #fff;border-radius: 5px;text-align: center;
+.green_btn{
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);;float: left;width: 319px;line-height: 88px;background-color: #259F25;color: #fff;border-radius: 5px;text-align: center;
 }
 
-.not_agree{
-    float: right;width: 319px;line-height: 88px;background-color: #FDBE3B;color: #fff;border-radius: 5px;text-align: center;
+.orange_btn{
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);;float: right;width: 319px;line-height: 88px;background-color: #FDBE3B;color: #fff;border-radius: 5px;text-align: center;
 }
 
 .display_flex{
@@ -637,4 +639,66 @@ body{
 
 .width180{
     width: 180px;
+}
+
+.tc{
+    text-align: center;
+}
+
+.agent_info_content_item{
+    width: 100%;display: flex;margin-top: 40px;
+}
+
+.agent_info_content_item div{
+    flex: 1;font-size: 36px;color: #CA5430;text-align: center;
+}
+
+.agent_info_content_row{
+    display: flex;padding: 30px 40px 0;
+}
+
+.agent_info_content_row div{
+    flex: 1;font-size: 30px;color: #6F6F6F;
+}
+
+.gray_line{
+   height: 2px;background-color: #C4C4C4;box-sizing: border-box;margin: 30px 40px 0;
+}
+
+.agent_info_oper{
+    display: flex;padding: 40px;box-sizing: border-box;line-height: 51px;
+}
+
+.agent_info_oper div{
+    font-size: 36px;color: #CA5430;flex: 1;
+}
+
+.my_agent_list li{
+    margin: 0 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid #9B9B9B;
+}
+
+.my_agent_head_img{
+    width: 120px;height: 120px;border-radius: 50%;overflow: hidden;float: left;background-color: #797979;
+}
+
+.my_agent_head_img img{
+    max-height: 100%;max-width: 100%;
+}
+
+.my_agent_person{
+    margin-left: 140px;margin-right: 61px;
+}
+
+.my_agent_person h1{
+    font-size: 36px;color: #CA5430;font-weight: bold;margin-top: 20px;margin-bottom: 30px;
+}
+
+.my_agent_person p{
+    font-size: 24px;color: #6F6F6F;
+}
+
+.mt40{
+    margin-top: 40px;
 }

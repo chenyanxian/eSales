@@ -7,32 +7,102 @@
     <title>注册</title>
     <link href="../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../resources/js/jquery-1.11.2.min.js"></script>
+    <script src="../../resources/js/zepto.min.js"></script>
 </head>
 <body class="bg_orange">
-<h1 class="login_title">注册</h1>
+    <h1 class="login_title">注册</h1>
 
-<div class="login_item">
-    <div class="test_get_code">获取验证码</div>
-    <div class="mr188">
-        <input type="text" class="login_input" placeholder="手机号码"/>
+    <div class="login_item">
+        <div class="test_get_code" id="getNum">获取验证码</div>
+        <div class="mr188">
+            <input type="text" id="phoneNum" class="login_input" placeholder="手机号码"/>
+        </div>
     </div>
-</div>
 
-<div class="login_item">
-    <input type="text" class="login_input" placeholder="验证码"/>
-</div>
+    <div class="login_item">
+        <input type="text" class="login_input" id="checkNum" placeholder="验证码"/>
+    </div>
 
-<div class="login_item">
-    <input type="text" class="login_input" placeholder="微信号"/>
-</div>
+    <div class="login_item">
+        <input type="text" class="login_input" id="wxNum" placeholder="微信号"/>
+    </div>
 
-<div class="login_item">
-    <input type="text" class="login_input" placeholder="设置密码"/>
-</div>
+    <div class="login_item">
+        <input type="password" class="login_input" id="pwd" placeholder="设置密码"/>
+    </div>
 
-<div class="register_btn">注册</div>
-
-
+    <div class="register_btn" id="regUser">注册</div>
 
 </body>
 </html>
+<script>
+    function getParams(){
+        var res = {bl:false, data:null};
+        var phone = $("#phoneNum").val();
+        var checkNum = $("#checkNum").val();
+        var wxNum = $("#wxNum").val();
+        var pwd = $("#pwd").val();
+
+        if(phone == "" || checkNum == "" || wxNum == "" || pwd == ""){
+            res.bl = false;
+        }else{
+            res.bl = true;
+            res.data = {phone:phone,checkNum:checkNum,wxNum:wxNum,pwd:pwd};
+        }
+        return res;
+    }
+
+    var tagClick = true;
+
+    function setCookie(val){
+        document.cookie = "user="+val;
+    }
+
+    $("#getNum").click(function(){
+        $.ajax({
+            type:"get",
+            url:"/api/user/validateCode?phone="+ $("#phoneNum").val(),
+            success:function(d){
+                d = eval("("+d+")");
+                if(d.status.code == "1"){
+                    alert("发送验证码成功!");
+                }else{
+                    alert(d.status.message);
+                }
+            }
+        });
+    })
+
+    $("#regUser").click(function(){
+
+        if(tagClick){
+            var res = getParams();
+            if(res.bl){
+                $.ajax({
+                    type:"post",
+                    url:"/api/user/register",
+//                    dataType:"json",
+                    data:{userPhone:res.data.phone,wechatNo:encodeURIComponent(res.data.wxNum),password:encodeURIComponent(res.data.pwd),validateCode:res.data.checkNum},
+                    success:function(d){
+                        d = eval("("+d+")");
+                        if(d.status.code == "1"){
+                            alert("注册成功!");
+                            window.location.href = "./login.html";
+                            setCookie(d.data.user);
+                        }else{
+                            alert(d.status.message)
+                        }
+                        tagClick = true;
+                    },
+                    error:function(){
+                        tagClick = true;
+                    }
+                });
+            }else{
+                alert("手机号码,验证码,微信号,密码为必填项!");
+            }
+        }
+        tagClick = false;
+    })
+</script>
