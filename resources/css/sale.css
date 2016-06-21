@@ -664,3 +664,41 @@ body{
 .gray_line{
    height: 2px;background-color: #C4C4C4;box-sizing: border-box;margin: 30px 40px 0;
 }
+
+.agent_info_oper{
+    display: flex;padding: 40px;box-sizing: border-box;line-height: 51px;
+}
+
+.agent_info_oper div{
+    font-size: 36px;color: #CA5430;flex: 1;
+}
+
+.my_agent_list li{
+    margin: 0 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid #9B9B9B;
+}
+
+.my_agent_head_img{
+    width: 120px;height: 120px;border-radius: 50%;overflow: hidden;float: left;background-color: #797979;
+}
+
+.my_agent_head_img img{
+    max-height: 100%;max-width: 100%;
+}
+
+.my_agent_person{
+    margin-left: 140px;margin-right: 61px;
+}
+
+.my_agent_person h1{
+    font-size: 36px;color: #CA5430;font-weight: bold;margin-top: 20px;margin-bottom: 30px;
+}
+
+.my_agent_person p{
+    font-size: 24px;color: #6F6F6F;
+}
+
+.mt40{
+    margin-top: 40px;
+}
