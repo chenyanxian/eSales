@@ -699,6 +699,26 @@ body{
     font-size: 24px;color: #6F6F6F;
 }
 
+.my_agent_info{
+    display: flex;color: #fff;font-size: 32px;line-height: 51px;
+}
+
+.flex_1{
+    flex: 1;
+}
+
 .mt40{
     margin-top: 40px;
+}
+
+.add_agent{
+    margin-top: 15px;box-sizing: border-box;line-height: 80px;float: right;color: #D66737;font-size: 72px;text-align: center;width: 80px;height: 80px;border-radius: 50%;border: 5px solid #FDBE3B;
+}
+
+.new_store{
+    height: 45px;font-size: 36px;color: #D15829;line-height: 45px;margin-top: 10px;margin-bottom: 30px;
+}
+
+.new_store_mark{
+    font-size: 32px;float: right;border: 1px solid #D15829;border-radius: 5px;width: 105px;height: 45px;text-align: center;box-sizing: border-box;
 }
