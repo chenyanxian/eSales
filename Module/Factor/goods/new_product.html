@@ -7,6 +7,37 @@
     <title>增加商品</title>
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
+
+    <style type="text/css">
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #D0EEFF;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #1E88C7;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .file:hover {
+            background: #AADFFD;
+            border-color: #78C3F3;
+            color: #004974;
+            text-decoration: none;
+        }
+    </style>
+
+    <script src="../../../resources/js/zepto.min.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
@@ -17,7 +48,7 @@
 <div class="product_info_container">
     <ul class="clearfix">
         <li>
-            <img src="../../../resources/images/img.jpg">
+            <img src="" id="img1">
             <img src="../../../resources/images/del.png" class="del_product_img"/>
         </li>
         <li>
@@ -50,8 +81,14 @@
         </li>
 
         <li class="add_product_img">
-            <img src="../../../resources/images/add.png">
-            <p>添加图片</p>
+
+            <a href="javascript:;" class="file">选择文件
+                <input type="file" name="" id="addFile">
+            </a>
+
+            <!--<input type="file" style="background-image: url(../../../resources/images/add.png)" />-->
+            <!--<img src="../../../resources/images/add.png">-->
+            <!--<p>添加图片</p>-->
         </li>
     </ul>
 
@@ -83,12 +120,17 @@
 
 </div>
 
-<!--<div class="footer">
-    <div class="footer_nav">我的</div>
-    <div class="footer_nav">订单</div>
-    <div class="footer_nav footer_nav_hover">商品</div>
-    <div class="footer_nav_last">代销团队</div>
-</div>-->
-
 </body>
 </html>
+<script>
+    $("#addFile").on("change",function(e){
+        var val = e.target.files || e.dataTransfer.files;
+
+        var filereader = new FileReader();
+        filereader.onload = function () {
+            $("#img1").attr("src",this.result).css({width:"220px",height:"220px"});
+            //callback(this.result);
+        }
+        filereader.readAsDataURL(val[0]);
+    })
+</script>
