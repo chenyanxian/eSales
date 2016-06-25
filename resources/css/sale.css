@@ -256,6 +256,10 @@ body{
     color: #000000;
 }
 
+.color_orange{
+    color: #CA5430;
+}
+
 .fs36{
    font-size: 36px;
 }
@@ -438,8 +442,9 @@ body{
     font-size: 32px;
 }
 
-.forget_pwd_btn{
-    margin: 100px 40px 0;
+.big_green_btn{
+    margin-left: 40px;
+    margin-right: 40px;
     height: 88px;
     border-radius: 5px;
     color: #fff;
@@ -447,6 +452,7 @@ body{
     text-align: center;
     font-size: 36px;
     background-color: #259F25;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
 
 .product_info_box{
@@ -722,3 +728,28 @@ body{
 .new_store_mark{
     font-size: 32px;float: right;border: 1px solid #D15829;border-radius: 5px;width: 105px;height: 45px;text-align: center;box-sizing: border-box;
 }
+
+
+.inputStyle{
+    border: 2px solid #CCCCCC;
+    height: 65px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 32px;
+}
+
+.data_item{
+    margin: 50px 40px 0;line-height: 65px;
+}
+
+.ml155{
+    margin-left: 155px;
+}
+
+.mt100{
+    margin-top: 100px;
+}
+
+
+
+
