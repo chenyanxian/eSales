@@ -35,6 +35,10 @@
             color: #004974;
             text-decoration: none;
         }
+        #imgList li img[tag=pre]{
+            width: 220px;
+            height: 220px;
+        }
     </style>
 
     <script src="../../../resources/js/zepto.min.js"></script>
@@ -46,49 +50,11 @@
 </div>
 
 <div class="product_info_container">
-    <ul class="clearfix">
-        <li>
-            <img src="" id="img1">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-        <li>
-            <img src="../../../resources/images/img.jpg">
-            <img src="../../../resources/images/del.png" class="del_product_img"/>
-        </li>
-
-        <li class="add_product_img">
-
+    <ul class="clearfix" id="imgList">
+        <li class="add_product_img" id="addImg">
             <a href="javascript:;" class="file">选择文件
                 <input type="file" name="" id="addFile">
             </a>
-
-            <!--<input type="file" style="background-image: url(../../../resources/images/add.png)" />-->
-            <!--<img src="../../../resources/images/add.png">-->
-            <!--<p>添加图片</p>-->
         </li>
     </ul>
 
@@ -117,19 +83,26 @@
         <div class="sale_cancel_btn sale_l">取消</div>
         <div class="sale_confirm_btn sale_r">保存</div>
     </div>
-
 </div>
 
 </body>
 </html>
 <script>
+    function preImg(result){
+        var html = "<li><img tag='pre' src='"+result+"'><img src='../../../resources/images/del.png' class='del_product_img'/></li>";
+        $("#imgList").prepend($(html));
+        var existImgs = $("#imgList img[tag=pre]");
+        if(existImgs.length == 9){
+            $("#addImg").remove();
+        }
+    }
+
     $("#addFile").on("change",function(e){
         var val = e.target.files || e.dataTransfer.files;
 
         var filereader = new FileReader();
         filereader.onload = function () {
-            $("#img1").attr("src",this.result).css({width:"220px",height:"220px"});
-            //callback(this.result);
+            preImg(this.result);
         }
         filereader.readAsDataURL(val[0]);
     })
