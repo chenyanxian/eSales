@@ -37,7 +37,7 @@
         var pwd = $("#pwd").val();
 
         $.ajax({
-            url:"api/user/doLogin",
+            url:"/api/doLogin",
             type:"post",
             data:{userPhone:name,password:pwd},
             success:function(d){
@@ -45,7 +45,7 @@
                 if(d.status.code == "1"){
                     cb(d.data);
                 }else{
-                    alert(d.status.message)
+                    alert(d.status.message);
                 }
             }
         })
@@ -53,7 +53,7 @@
 
     $("#dlLogin").click(function(){
         doLogin(function(){
-            window.location.href="../Factor/list.html";
+            window.location.href="../Factor/goods/list.html";
         })
     })
     $("#dxLogin").click(function(){

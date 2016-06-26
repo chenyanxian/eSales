@@ -7,7 +7,7 @@
     <title>增加商品</title>
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
-
+    <script src="../../../resources/js/zepto.min.js"></script>
     <style type="text/css">
         .file {
             position: relative;
@@ -45,7 +45,7 @@
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/back.png" class="mt5"/></div>
+    <div class="sale_top_nav_l" id="goList"><img src="../../../resources/images/back.png" class="mt5"/></div>
     <div style="margin: 0 61px;">新增商品</div>
 </div>
 
@@ -53,41 +53,96 @@
     <ul class="clearfix" id="imgList">
         <li class="add_product_img" id="addImg">
             <a href="javascript:;" class="file">选择文件
-                <input type="file" name="" id="addFile">
+                <input type="file" multiple="multiple" id="addFile">
             </a>
         </li>
     </ul>
 
     <div class="edit_product_item">
         <p class="fs36 color0">商品名称</p>
-        <input type="text" class="edit_product_input"/>
+        <input type="text" class="edit_product_input" id="proName"/>
     </div>
 
     <div class="edit_product_item">
         <div class="sale_l" style="width: 45%;">
             <p class="fs36 color0">零售价格</p>
-            <input type="text" class="edit_product_input"/>
+            <input type="text" class="edit_product_input" id="proPrice"/>
         </div>
 
         <div class="sale_r" style="width: 45%">
             <p class="fs36 color0">库存数量</p>
-            <input type="text" class="edit_product_input"/>
+            <input type="text" class="edit_product_input" id="proStock" />
         </div>
     </div>
 
     <div class="edit_product_item">
-        <textarea class="edit_product_input height200" placeholder="商品简介"></textarea>
+        <textarea class="edit_product_input height200" placeholder="商品简介" id="proDesc"></textarea>
     </div>
 
     <div class="clearfix login_btn_box">
-        <div class="sale_cancel_btn sale_l">取消</div>
-        <div class="sale_confirm_btn sale_r">保存</div>
+        <div class="sale_cancel_btn sale_l" id="cancel">取消</div>
+        <div class="sale_confirm_btn sale_r" id="savePro">保存</div>
     </div>
 </div>
 
 </body>
 </html>
 <script>
+
+    $("#goList").click(function(){
+        window.location.href = "./list.html";
+    })
+    $("#cancel").click(function(){
+        window.location.href = "./list.html";
+    })
+
+    function getImgs(){
+        var res = [];
+        $("#imgList img[tag=pre]").each(function(){
+            res.push($(this).attr("src"));
+        })
+        return res;
+    }
+
+    $("#savePro").click(function(){
+        $.ajax({
+            url:"/api/product/add",
+            type:"post",
+            data:{name:$("#proName").val(),stock:$("#proStock").val(),price:$("#proPrice").val(),description:$("#proDesc").val(),images:getImgs()},
+            success:function(d){
+                d = eval("("+d+")");
+                if(d.status.code == "1"){
+                    window.location.href = "./list.html";
+                }else if(d.status.code == "3"){
+                    window.location.href = "../../Login/login.html";
+                }else{
+                    alert(d.status.message);
+                }
+            }
+        })
+    })
+
+    function compressImg(imgData,maxHeight,onCompress){
+        if(!imgData){
+            return;
+        }
+        onCompress = onCompress || function(){};
+        maxHeight = maxHeight || 220;//默认最大高度200px
+        var canvas = document.createElement('canvas');
+        var img = new Image();
+        img.onload = function(){
+            if(img.height > maxHeight) {//按最大高度等比缩放
+                img.width *= maxHeight / img.height;
+                img.height = maxHeight;
+            }
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // canvas清屏
+            ctx.drawImage(img, 0, 0, img.width, img.height); // 将图像绘制到canvas上
+            onCompress(canvas.toDataURL("image/jpeg"));//必须等压缩完才读取canvas值，否则canvas内容是黑帆布
+        };
+        img.src = imgData;
+    }
+
     function preImg(result){
         var html = "<li><img tag='pre' src='"+result+"'><img src='../../../resources/images/del.png' class='del_product_img'/></li>";
         $("#imgList").prepend($(html));
@@ -99,11 +154,16 @@
 
     $("#addFile").on("change",function(e){
         var val = e.target.files || e.dataTransfer.files;
-
-        var filereader = new FileReader();
-        filereader.onload = function () {
-            preImg(this.result);
+        for(var i=0;i<val.length;i++){
+            (function(index){
+                var filereader = new FileReader();
+                filereader.onload = function () {
+                    compressImg(this.result,220,function(res){
+                        preImg(res);
+                    })
+                }
+                filereader.readAsDataURL(val[index]);
+            })(i);
         }
-        filereader.readAsDataURL(val[0]);
     })
 </script>
