@@ -7,78 +7,21 @@
     <title>商品列表</title>
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../../resources/js/zepto.min.js"></script>
+    <script src="../../../resources/js/core.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/u12.png"/></div>
-    <div class="sale_r mr15"><img src="../../../resources/images/u82.png"/></div>
+    <div class="sale_top_nav_l" id="goHome"><img src="../../../resources/images/u12.png" /></div>
+    <div class="sale_r mr15" id="addPro"><img src="../../../resources/images/u82.png"/></div>
     <div style="margin: 0 61px;">易代理</div>
 </div>
 
-<ul class="sale_list">
-    <li class="clearfix">
-        <div class="product_img">
-            <img src="../../../resources/images/u72.png"/>
-        </div>
-        <div class="product_info_box">
-            <p>商品名称</p>
-            <p class="product_info_stock">售价：$2000/库存：30</p>
-        </div>
+<section>
+    <ul class="sale_list" id="goodsList">
 
-        <div class="sale_r"><img class="mt50" src="../../../resources/images/u56.png"/></div>
-    </li>
-
-    <li class="clearfix">
-        <div class="product_img">
-            <img src="../../../resources/images/u72.png"/>
-        </div>
-        <div class="product_info_box">
-            <p>商品名称</p>
-            <p class="product_info_stock">售价：$2000/库存：30</p>
-        </div>
-
-        <div class="sale_r"><img class="mt50" src="../../../resources/images/u56.png"/></div>
-    </li>
-
-    <li class="clearfix">
-        <div class="product_img">
-            <img src="../../../resources/images/u72.png"/>
-        </div>
-        <div class="product_info_box">
-            <p>商品名称</p>
-            <p class="product_info_stock">售价：$2000/库存：30</p>
-        </div>
-
-        <div class="sale_r"><img class="mt50" src="../../../resources/images/u56.png"/></div>
-    </li>
-
-    <li class="clearfix">
-        <div class="product_img">
-            <div class="bg_orange product_out_of">缺货</div>
-            <img src="../../../resources/images/u72.png"/>
-        </div>
-        <div class="product_info_box">
-            <p>商品名称</p>
-            <p class="product_info_stock product_out_of_color">售价：$2000/库存：0</p>
-        </div>
-
-        <div class="sale_r"><img class="mt50" src="../../../resources/images/u56.png"/></div>
-    </li>
-
-    <li class="clearfix">
-        <div class="product_img">
-            <div class="bg_orange product_out_of">缺货</div>
-            <img src="../../../resources/images/u72.png"/>
-        </div>
-        <div class="product_info_box">
-            <p>商品名称</p>
-            <p class="product_info_stock product_out_of_color">售价：$2000/库存：0</p>
-        </div>
-
-        <div class="sale_r"><img class="mt50" src="../../../resources/images/u56.png"/></div>
-    </li>
-</ul>
-
+    </ul>
+</section>
 <div class="footer">
     <div class="footer_nav">我的</div>
     <div class="footer_nav">订单</div>
@@ -88,3 +31,72 @@
 
 </body>
 </html>
+<script>
+    $("#goHome").click(function(){
+        window.location.href = "../my/factor_index.html";
+    })
+
+    $("#addPro").click(function(){
+        window.location.href = "./new_product.html";
+    })
+
+    function render(data){
+        var html = "";
+        for(var i=0;i<data.length;i++){
+            html += "<li class='clearfix'>";
+            html += "<div class='product_img'>";
+            if(data[i].stock == 0){
+                html += "<div class='bg_orange product_out_of'>缺货</div>";
+            }
+            html += "<img src='"+data[i].thumbnail+"'/>";
+            html += "</div>";
+            html += "<div class='product_info_box'>";
+            html += "<p>"+data[i].name+"</p>";
+            if(data[i].stock == 0){
+                html += "<p class='product_info_stock product_out_of_color'>售价：RMB"+data[i].price+"/库存："+data[i].stock+"</p>";
+            }else{
+                html += "<p class='product_info_stock'>售价：RMB"+data[i].price+"/库存："+data[i].stock+"</p>";
+            }
+
+            html += "</div>";
+            html += "<div class='sale_r'><img class='mt50' src='../../../resources/images/u56.png'/></div>";
+            html += "</li>";
+        }
+        $("#goodsList").append($(html));
+    }
+
+    var pageSize = 10;
+    var pageIndex = 1;
+    var loadMoreTag = true;
+    function getData(){
+        $.ajax({
+            url:"/api/product/list?pageIndex="+pageIndex+"&pageSize="+pageSize,
+            type:"get",
+            success:function(d){
+                d = eval("("+d+")");
+                if(d.status.code == "1"){
+                    render(d.data.datas);
+                    if(pageSize * pageIndex < d.data.totalCount){
+                        pageIndex++;
+                        loadMoreTag = true;
+                    }else{
+                        loadMoreTag = false;
+                    }
+                }else if(d.status.code == "3"){
+                    goLogin();
+                }
+                else{
+                    alert(d.status.message);
+                }
+            }
+        })
+    }
+
+    jsCoreMethod.autoScroll(function(){
+        if(loadMoreTag){
+            loadMoreTag = false;
+            getData();
+        }
+    })
+    getData();
+</script>
