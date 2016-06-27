@@ -300,7 +300,7 @@ body{
 }
 
 .edit_product_input{
-    border: 2px solid #FED379;
+    border: 2px solid #C4C4C4;
     border-radius: 15px;
     height: 85px;
     font-size: 36px;
@@ -750,6 +750,55 @@ body{
     margin-top: 100px;
 }
 
+.get_money_totle{
+    padding: 30px 40px;
+    box-sizing: border-box;
+    margin-top: -1px;
+    font-size: 36px;
+    color: #FDBE3B;
+}
 
+.get_money_p{
+    color: #6F6F6F;
+    font-size: 24px;
+    margin: 20px 40px 0;
+}
+
+.select_bank{
+    width: 24px;
+    height: 24px;
+}
+
+.get_money_item{
+    margin: 30px 40px 0;
+}
+
+.get_money_input{
+    border: 2px solid #C4C4C4;
+    border-radius: 10px;
+    height: 65px;
+    font-size: 28px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.white36{
+    color: #fff;
+    font-size: 36px;
+}
+
+.get_phone_val{
+    margin-right: 220px;
+}
+
+.get_money_tip{
+    font-size: 36px;
+    font-weight: bold;
+    width: 480px;
+    margin: 40px auto;
+    color: #6F6F6F;
+    line-height: 48px;
+}
 
 
