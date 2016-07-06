@@ -732,10 +732,12 @@ body{
 
 .inputStyle{
     border: 2px solid #CCCCCC;
-    height: 65px;
+    height: 70px;
     border-radius: 10px;
     width: 100%;
     font-size: 32px;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .data_item{
@@ -799,6 +801,30 @@ body{
     margin: 40px auto;
     color: #6F6F6F;
     line-height: 48px;
+}
+
+.user_index_btn{
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);background-color: #FDBE3B;float: right;width: 214px;height: 106px;border-radius: 15px;font-size: 32px;color: #fff;line-height: 106px;text-align: center;
+}
+
+.stockout{
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);background-color: #C4C4C4;float: right;width: 214px;height: 106px;border-radius: 15px;font-size: 32px;color: #fff;line-height: 106px;text-align: center;
+}
+
+.color_gray{
+    color: #9B9B9B;
+}
+
+.mr284{
+    margin-right: 284px;
+}
+
+.user_index_edit_box{
+    margin: 0 30px 20px;padding-bottom: 30px;border-bottom: 4px solid #e3e3e3;
+}
+
+.edit_totle{
+    display: flex;line-height: 51px;margin-top: 30px;
 }
 
 
