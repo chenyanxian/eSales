@@ -7,10 +7,12 @@
     <title>代销管理</title>
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../../resources/js/zepto.min.js"></script>
+    <script src="../../../resources/js/core.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/u12.png" class="mt5"/></div>
+    <div class="sale_top_nav_l" id="goHome"><img src="../../../resources/images/u12.png" class="mt5"/></div>
     <div style="margin: 0 61px;">易代理</div>
 </div>
 
@@ -74,10 +76,10 @@
 </ul>
 
 <div class="footer">
-    <div class="footer_nav">我的</div>
-    <div class="footer_nav">订单</div>
-    <div class="footer_nav footer_nav_hover">商品</div>
-    <div class="footer_nav_last">代销团队</div>
+    <div class="footer_nav" id="myNav">我的</div>
+    <div class="footer_nav" id="orderNav">订单</div>
+    <div class="footer_nav footer_nav_hover" id="proNav">商品</div>
+    <div class="footer_nav_last" id="agentNav">代销团队</div>
 </div>
 
 </body>

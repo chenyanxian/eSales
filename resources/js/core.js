@@ -466,3 +466,22 @@ function goLogin(){
     window.location.href = "../../Module/Login/login.html";
 }
 
+$(function(){
+    $("body").delegate("#myNav","click",function(){
+        window.location.href = "/Module/Factor/factor_index.html";
+    })
+    $("body").delegate("#orderNav","click",function(){
+        window.location.href = "/Module/Factor/order/order_list.html";
+    })
+    $("body").delegate("#proNav","click",function(){
+        window.location.href = "/Module/Factor/goods/list.html";
+    })
+    $("body").delegate("#agentNav","click",function(){
+        window.location.href = "/Module/Factor/myAgent/my_agent.html";
+    })
+    $("body").delegate("#goHome","click",function(){
+        window.location.href = "/Module/Factor/factor_index.html";
+    })
+
+})
+

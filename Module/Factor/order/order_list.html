@@ -8,10 +8,11 @@
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
     <script src="../../../resources/js/zepto.min.js"></script>
+    <script src="../../../resources/js/core.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/u12.png"/></div>
+    <div class="sale_top_nav_l" id="goHome"><img src="../../../resources/images/u12.png"/></div>
     <div style="margin: 0 61px;">易代理</div>
 </div>
 
@@ -21,13 +22,13 @@
 </div>
 
 <ul class="order_select_menu">
-    <li>已发货</li>
-    <li>待处理</li>
-    <li>已完成</li>
+    <li id="finished">已发货</li>
+    <li id="send">待处理</li>
+    <li id="">已完成</li>
 </ul>
 
-<ul class="order_list">
-    <li class="clearfix">
+<ul class="order_list" id="container">
+    <li class="clearfix" tag="wait_sales_return">
         <div class="sale_l">
             <h1>商品名称</h1>
             <p>下单时间：2016.12.31 14:00 </p>
@@ -42,7 +43,7 @@
         </div>
     </li>
 
-    <li class="clearfix">
+    <li class="clearfix" tag="wait_send">
         <div class="sale_l">
             <h1>商品名称</h1>
             <p>下单时间：2016.12.31 14:00 </p>
@@ -57,7 +58,7 @@
         </div>
     </li>
 
-    <li class="clearfix">
+    <li class="clearfix" tag="send">
         <div class="sale_l">
             <h1>商品名称</h1>
             <p>下单时间：2016.12.31 14:00 </p>
@@ -71,13 +72,58 @@
             <div class="order_list_status status_green">已发货</div>
         </div>
     </li>
+
+    <li class="clearfix" tag="finish">
+        <div class="sale_l">
+            <h1>商品名称</h1>
+            <p>下单时间：2016.12.31 14:00 </p>
+            <p>买家：芙蓉姐姐 订单金额：¥4000</p>
+        </div>
+
+        <div class="sale_r"><img src="../../../resources/images/more.png"/></div>
+
+        <div class="sale_r">
+            <h1 class="tr">×3</h1>
+            <div class="order_list_status status_green">已完成</div>
+        </div>
+    </li>
+
+    <li class="clearfix" tag="cancel">
+        <div class="sale_l">
+            <h1>商品名称</h1>
+            <p>下单时间：2016.12.31 14:00 </p>
+            <p>买家：芙蓉姐姐 订单金额：¥4000</p>
+        </div>
+
+        <div class="sale_r"><img src="../../../resources/images/more.png"/></div>
+
+        <div class="sale_r">
+            <h1 class="tr">×3</h1>
+            <div class="order_list_status status_red">已取消</div>
+        </div>
+    </li>
+
+    <li class="clearfix" tag="sales_return">
+        <div class="sale_l">
+            <h1>商品名称</h1>
+            <p>下单时间：2016.12.31 14:00 </p>
+            <p>买家：芙蓉姐姐 订单金额：¥4000</p>
+        </div>
+
+        <div class="sale_r"><img src="../../../resources/images/more.png"/></div>
+
+        <div class="sale_r">
+            <h1 class="tr">×3</h1>
+            <div class="order_list_status status_red">已退货</div>
+        </div>
+    </li>
 </ul>
 
 <div class="footer">
-    <div class="footer_nav">我的</div>
-    <div class="footer_nav">订单</div>
-    <div class="footer_nav footer_nav_hover">商品</div>
-    <div class="footer_nav_last">代销团队</div>
+    <div class="footer_nav" id="myNav">我的</div>
+    <div class="footer_nav footer_nav_hover" id="orderNav">订单</div>
+    <div class="footer_nav" id="proNav">商品</div>
+    <div class="footer_nav_last" id="agentNav">代销团队</div>
 </div>
 
 </body>
@@ -92,5 +138,29 @@
         $('.order_status').find('span').text($(this).text());
         $('.order_select_menu').css('display','none')
     })
+
+    $("#container").delegate("li[tag=wait_sales_return]","click",function(e){
+        window.location.href = "./wait_sales_return.html";
+    })
+    $("#container").delegate("li[tag=wait_send]","click",function(e){
+        window.location.href = "./wait_send.html";
+    })
+    $("#container").delegate("li[tag=send]","click",function(e){
+        window.location.href = "./send.html";
+    })
+    $("#container").delegate("li[tag=finish]","click",function(e){
+        window.location.href = "./finish.html";
+    })
+    $("#container").delegate("li[tag=cancel]","click",function(e){
+        window.location.href = "./cancel.html";
+    })
+    $("#container").delegate("li[tag=sales_return]","click",function(e){
+        window.location.href = "./sales_return.html";
+    })
+
+    $("#back").click(function(){
+        window.location.href = "../factor_index.html";
+    })
+
 
 </script>

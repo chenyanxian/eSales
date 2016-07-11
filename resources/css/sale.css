@@ -827,4 +827,88 @@ body{
     display: flex;line-height: 51px;margin-top: 30px;
 }
 
+.img_size{
+    max-height: 100%;
+    max-width: 100%;
+}
 
+.shop_icon_box{
+   width: 120px;height: 120px;border-radius: 50%;background-color: #99D3F5;
+}
+
+.shop_btn{
+    margin-top: 25px;line-height: 70px;color: #fff;font-size: 32px;text-align: center;width: 165px;height: 70px;background-color: #F19C71;border-radius: 5px;box-shadow: 2px 2px 2px rgba(0,0,0,.5)
+}
+
+.shop_info_box{
+    margin-left: 140px;margin-right: 175px;font-size: 24px;color: #6F6F6F;
+}
+
+.shop_info_box .shop_name{
+    font-size: 36px;font-weight: bold;color: #CA5430;padding-top: 15px;margin-bottom: 10px;
+}
+
+.shop_item{
+    border-bottom: 1px solid #9c9c9c;margin:15px 30px;padding-bottom: 15px;
+}
+
+.shop_product{
+    padding: 15px 0 15px 30px;border-bottom: 1px solid #9c9c9c;
+}
+
+.shop_product_item{
+    float: left;margin-right: 20px;font-size: 24px;color: #6e6e6e;line-height: 30px;
+}
+
+.product_item_img{
+    width: 135px;height: 135px;float: left;
+}
+
+.product_item_img img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.product_item_name{
+    font-size: 32px;font-weight: bold;margin-top: 10px;margin-bottom: 10px;
+}
+
+.shop_product .right img{
+    margin-top: 30px;margin-right: 30px;
+}
+
+.forwarding_btn{
+    float: right;
+    color: #fff;
+    font-size: 32px;
+    width: 184px;
+    height: 71px;
+    text-align: center;
+    line-height: 71px;
+    background-color: #D15829;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+}
+
+.shop_info_product{
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.tableBox{
+    border: 1px solid #fff;width: 100%;line-height: 50px;margin-bottom: 20px;margin-top: 20px;text-align: center;
+}
+
+
+.tableBox thead{
+    font-size: 32px;color: #D2592B;
+}
+
+.tableBox div{
+    margin: 0 auto;width: 88px;height: 30px;border: 1px solid #FDBE3B;line-height: 30px;color: #D2592B;font-size: 32px;text-align: center
+}
+
+.tableBox tbody tr{
+    background-color: #D2592B;font-size: 30px;color: #fff;
+}

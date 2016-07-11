@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=750,user-scalable=no" name="viewport">
+    <meta content="telephone=no" name="format-detection" />
+    <title>代理首页</title>
+    <link href="../../resources/css/common.css" rel="stylesheet"/>
+    <link href="../../resources/css/sale.css" rel="stylesheet"/>
+    <script src="../../resources/js/zepto.min.js"></script>
+    <script src="../../resources/js/core.js"></script>
+</head>
+<body>
+<div class="bg_orange sale_top_nav">
+    <div class="sale_top_nav_l"><img src="../../resources/images/u12.png" class="mt5"/></div>
+    <div class="sale_r mr15"><img src="../../resources/images/oper.png"/></div>
+    <div style="margin: 0 61px;">易代理</div>
+</div>
+
+<div class="factor_top bg_orange clearfix">
+    <div class="factor_top_left">
+        <img src="../../resources/images/img.jpg"/>
+    </div>
+
+    <div class="factor_top_right">
+        <p>可提现额度</p>
+        <p>4000</p>
+        <div class="btn" id="btnGetM">提现</div>
+    </div>
+
+    <div class="factor_top_center">
+        <p>销售总额：<span>10000</span></p>
+        <p>销售收入：<span>10000</span></p>
+        <p>账户余额：<span>10000</span></p>
+    </div>
+</div>
+
+<ul class="factor_list">
+    <li class="clearfix" id="_Order">
+        <img class="sale_l" src="../../resources/images/order.png"/>
+        <p class="sale_l ml15">当前订单：待发货：<span class="mr15">10</span>退货中：<span>5</span></p>
+        <img class="sale_r" src="../../resources/images/more.png"/>
+    </li>
+    <li class="clearfix" id="_Pro">
+        <img class="sale_l" src="../../resources/images/product.png"/>
+        <p class="sale_l ml15">上架商品：售卖中：<span class="mr15">10</span>无库存：<span>5</span></p>
+        <img class="sale_r" src="../../resources/images/more.png"/>
+    </li>
+    <li class="clearfix" id="_Agents">
+        <img class="sale_l" src="../../resources/images/team.png"/>
+        <p class="sale_l ml15">代销团队：提成比：<span class="mr15">10</span>人数：<span>5</span></p>
+        <img class="sale_r" src="../../resources/images/more.png"/>
+    </li>
+    <li class="clearfix" id="_MyShopInfo">
+        <img class="sale_l" src="../../resources/images/class.png"/>
+        <div class="sale_l ml15">
+            <p>主营品类：<span>鞋，箱包，衣服</span></p>
+            <p class="tip">说明：设置正确的主营品类可以方便代销找到您的店铺。</p>
+        </div>
+        <img class="sale_r" src="../../resources/images/more.png"/>
+    </li>
+</ul>
+
+<div class="footer">
+    <div class="footer_nav footer_nav_hover" id="myNav">我的</div>
+    <div class="footer_nav" id="orderNav">订单</div>
+    <div class="footer_nav" id="proNav">商品</div>
+    <div class="footer_nav_last" id="agentNav">代销团队</div>
+</div>
+
+</body>
+</html>
+
+<script>
+    document.querySelector("#btnGetM").addEventListener("click",function(){
+        window.location.href = "../getMoney/get_money.html";
+    },false);
+
+    document.querySelector("#_Order").addEventListener("click",function(){
+        window.location.href = "order/order_list.html";
+    },false);
+
+    document.querySelector("#_Pro").addEventListener("click",function(){
+        window.location.href = "goods/list.html";
+    },false);
+
+    document.querySelector("#_Agents").addEventListener("click",function(){
+        window.location.href = "myAgent/my_agent.html";
+    },false);
+
+    document.querySelector("#_MyShopInfo").addEventListener("click",function(){
+        //window.location.href = "../getMoney/get_money.html";
+    },false);
+
+</script>

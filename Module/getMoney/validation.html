@@ -5,12 +5,12 @@
     <meta content="width=750,user-scalable=no" name="viewport">
     <meta content="telephone=no" name="format-detection" />
     <title>提现验证</title>
-    <link href="../../../resources/css/common.css" rel="stylesheet"/>
-    <link href="../../../resources/css/sale.css" rel="stylesheet"/>
+    <link href="../../resources/css/common.css" rel="stylesheet"/>
+    <link href="../../resources/css/sale.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/back.png" class="mt5"/></div>
+    <div class="sale_top_nav_l"><img src="../../resources/images/back.png" class="mt5"/></div>
     <div style="margin: 0 61px;">易代理</div>
 </div>
 
@@ -31,7 +31,12 @@
         <input type="text" class="get_money_input" placeholder="请输入验证码"/>
     </div>
 </div>
-<div class="big_green_btn mt40">下一步</div>
+<div class="big_green_btn mt40" id="next">下一步</div>
 
 </body>
 </html>
+<script>
+    document.querySelector("#next").addEventListener("click",function(){
+        window.location.href = "./success.html";
+    },false);
+</script>

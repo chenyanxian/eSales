@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=750,user-scalable=no" name="viewport">
     <meta content="telephone=no" name="format-detection" />
-    <title>已完成</title>
+    <title>待退货</title>
     <link href="../../../resources/css/common.css" rel="stylesheet"/>
     <link href="../../../resources/css/sale.css" rel="stylesheet"/>
     <script src="../../../resources/js/zepto.min.js"></script>
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l" id="back"><img src="../../../resources/images/back.png" class="mt5"/></div>
-    <div style="margin: 0 61px;">已退货</div>
+    <div class="sale_top_nav_l"><img src="../../../resources/images/back.png" class="mt5"/></div>
+    <div style="margin: 0 61px;">待退货</div>
 </div>
 
 <div class="clearfix order_item_box">
@@ -20,7 +20,7 @@
         <label>订单号：</label>
         <span>B9382123523411324</span>
     </div>
-    <div class="order_info_status status_red">已退货</div>
+    <div class="order_info_status status_red">待退货</div>
 </div>
 
 <div class="order_item_box">
@@ -55,12 +55,13 @@
         <span>北京市朝阳区广顺北大街20号1单元2层201室</span>
     </p>
     <div class="order_list_info_P clearfix">
-        <div class="sale_l mt15">物流快递：</div>
+        <div class="sale_l mt15 width180">物流快递：</div>
+        <div class="search_express_info_btn">查看物流</div>
         <div class="express_class"><input type="text" value="顺丰快递"/></div>
     </div>
 
     <div class="order_list_info_P mb30 clearfix">
-        <p class="sale_l mt15">快递单号：</p>
+        <p class="sale_l mt15 width180">快递单号：</p>
         <div class="ml180"><input type="text" class="express_number_input" value="4233235123412341234"/></div>
     </div>
 
@@ -74,23 +75,68 @@
 <div class="clearfix contact_box">
     <div class="sale_l">
         <p>代销电话:13800000000</p>
-        <p class="mt50">提成：<span>0</span></p>
+        <p class="mt50">提成：¥200</p>
     </div>
 
     <div class="sale_r weixin_img">
         <img src="../../../resources/images/weixin.png"/>
     </div>
 </div>
-<!--<div class="footer">-->
-    <!--<div class="footer_nav">我的</div>-->
-    <!--<div class="footer_nav">订单</div>-->
-    <!--<div class="footer_nav footer_nav_hover">商品</div>-->
-    <!--<div class="footer_nav_last">代销团队</div>-->
-<!--</div>-->
+
+<div  style="margin: 30px 40px 0;">
+    <div class="green_btn agree">同意退货</div>
+    <div class="orange_btn not_agree">不予退货</div>
+</div>
+
+<div class="footer">
+    <div class="footer_nav">我的</div>
+    <div class="footer_nav">订单</div>
+    <div class="footer_nav footer_nav_hover">商品</div>
+    <div class="footer_nav_last">代销团队</div>
+</div>
+
+<div class="mask">
+    <div class="mask_container" id="agree_mask">
+        <p class="mt50">同意退货</p>
+        <p class="mask_agree_info">货款将直接返还至用户，请确认您已收到货品后操作。</p>
+        <div class="mask_bottom">
+            <div class="mask_confirm">确认退货</div>
+            <div class="mask_cancel">取消</div>
+        </div>
+    </div>
+
+    <div class="mask_container" id="not_agree_mask">
+        <p class="mt50">不予退货</p>
+        <textarea class="not_agree_reason" placeholder="请填写不退货原因，不写确认按钮不可点击。"></textarea>
+        <div class="mask_bottom">
+            <div class="mask_confirm">确认</div>
+            <div class="mask_cancel">取消</div>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
+
 <script>
-    $("#back").click(function(){
-        window.location.href = "./order_list.html";
+    $('.agree').on('click',function(){
+        $('.mask').css('display','block');
+        $('#agree_mask').css('display','block');
+    });
+
+    $('.not_agree').on('click',function(){
+        $('.mask').css('display','block');
+        $('#not_agree_mask').css('display','block');
+    })
+
+    $('#agree_mask .mask_confirm').on('click',function(){
+        $('.mask').css('display','none');
+        $('#not_agree_mask').css('display','none');
+    })
+
+    $('#not_agree_mask .mask_confirm').on('click',function(){
+        $('.mask').css('display','none');
+        $('#not_agree_mask').css('display','none');
     })
 </script>

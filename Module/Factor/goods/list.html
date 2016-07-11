@@ -23,46 +23,55 @@
     </ul>
 </section>
 <div class="footer">
-    <div class="footer_nav">我的</div>
-    <div class="footer_nav">订单</div>
-    <div class="footer_nav footer_nav_hover">商品</div>
-    <div class="footer_nav_last">代销团队</div>
+    <div class="footer_nav" id="myNav">我的</div>
+    <div class="footer_nav" id="orderNav">订单</div>
+    <div class="footer_nav footer_nav_hover" id="proNav">商品</div>
+    <div class="footer_nav_last" id="agentNav">代销团队</div>
 </div>
 
 </body>
 </html>
 <script>
     $("#goHome").click(function(){
-        window.location.href = "../my/factor_index.html";
+        window.location.href = "../factor_index.html";
     })
 
     $("#addPro").click(function(){
-        window.location.href = "./new_product.html";
+        window.location.href = "./new_product.html?tag=add";
     })
-
+//<li class='clearfix' tag='info'><div class='product_img'><div class='bg_orange product_out_of'>缺货</div>
     function render(data){
         var html = "";
         for(var i=0;i<data.length;i++){
-            html += "<li class='clearfix'>";
+            html += "<li class='clearfix' tag='info'>";
             html += "<div class='product_img'>";
             if(data[i].stock == 0){
                 html += "<div class='bg_orange product_out_of'>缺货</div>";
             }
-            html += "<img src='"+data[i].thumbnail+"'/>";
+            html += "<img style='max-height:100%;max-width:100%;' src='"+data[i].firstImg+"'/>";
             html += "</div>";
             html += "<div class='product_info_box'>";
             html += "<p>"+data[i].name+"</p>";
             if(data[i].stock == 0){
                 html += "<p class='product_info_stock product_out_of_color'>售价：RMB"+data[i].price+"/库存："+data[i].stock+"</p>";
             }else{
-                html += "<p class='product_info_stock'>售价：RMB"+data[i].price+"/库存："+data[i].stock+"</p>";
+                html += "<p class='product_info_stock'>售价：RMB "+data[i].price+"/库存："+data[i].stock+"</p>";
             }
 
             html += "</div>";
-            html += "<div class='sale_r'><img class='mt50' src='../../../resources/images/u56.png'/></div>";
+            html += "<div class='sale_r' id='"+data[i].id+"' onclick='goDetail(this);' tag='detail'><img class='mt50' src='../../../resources/images/u56.png'/></div>";
             html += "</li>";
         }
         $("#goodsList").append($(html));
+    }
+
+    $("#goodsList").delegate("li[tag=info]","click",function(){
+        window.location.href = "./product_info.html";
+    })
+
+    function goDetail(obj){
+        var id = $(obj).attr("id");
+        window.location.href = "./new_product.html?tag=edit&id="+id;
     }
 
     var pageSize = 10;

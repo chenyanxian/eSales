@@ -30,34 +30,13 @@
 
     <p class="product_info_name">适马35mm F1.4 DG HSM 定焦镜头</p>
 
-    <div class="user_index_edit_box">
-        <div class="clearfix">
-            <div class="user_index_btn">下一步</div>
-            <div class="mr284">
-                <p><input class="inputStyle" type="text" placeholder="姓名"/></p>
-                <p><input class="inputStyle mt15" type="text" placeholder="手机"/></p>
-            </div>
-        </div>
-
-        <p><input class="inputStyle mt15" type="text" placeholder="收获地址"/></p>
-
-        <div class="edit_totle">
-            <div class="flex_1 color_gray">单价：¥500</div>
-
-            <div class="flex_1 tc">
-                <img src="../../resources/images/del_totle.png"/>
-                <span class="ml15 mr15">30%</span>
-                <img src="../../resources/images/add_totle.png"/>
-            </div>
-
-            <div class="tr flex_1 color_orange">总价：¥2500</div>
-
+    <div class="product_info_price clearfix">
+        <div class="user_index_btn" id="buyIt">购买</div>
+        <div class="product_info_totle">
+            <p>零售价：¥<span>500</span>  库存：<span>10</span></p>
+            <p class="mt20">提成：¥<span>500</span></p>
         </div>
     </div>
-
-
-
-
 
     <p class="ml40 fs36 color0">商品简介</p>
     <p class="product_info_introduce">商品简介概念主要设计成拥有光学表现,丰富表达能力,这唯美型号产品线的镜头能发放高端的艺术展示。拥有卓越展示的表现，满足艺术创意满盈摄影师的高</p>
@@ -65,3 +44,8 @@
 
 </body>
 </html>
+<script>
+    document.querySelector("#buyIt").addEventListener("click",function(){
+        window.location.href = "./buyPro.html";
+    },false);
+</script>

@@ -89,6 +89,49 @@
 </html>
 <script>
 
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  decodeURIComponent(r[2]); return null;
+    }
+
+    var tag = getQueryString("tag");
+    if(tag == "add"){
+
+    }
+    if(tag == "edit"){
+        var id = getQueryString("id");
+        $.ajax({
+            url:"/api/product/info?id="+id,
+            type:"get",
+            success:function(d){
+                d = eval("("+d+")");
+                if(d.status.code == "1"){
+                    var tmp = d.data;
+                    var imgs = JSON.parse(tmp.thumbnail);
+                    //bind imgs
+                    for(var i =0;i<imgs.length;i++){
+                        var html = "<li><img tag='pre' src='"+imgs[i]+"'><img src='../../../resources/images/del.png' class='del_product_img'/></li>";
+                        $("#imgList").prepend($(html));
+                    }
+                    if(imgs.length == 9){
+                        $("#addImg").remove();
+                    }
+                    //bind others
+                    $("#proName").val(tmp.name);
+                    $("#proStock").val(tmp.stock);
+                    $("#proPrice").val(tmp.price);
+                    $("#proDesc").val(tmp.description);
+                }else if(d.status.code == "3"){
+                    window.location.href = "../../Login/login.html";
+                }
+                else{
+                    alert(d.status.message);
+                }
+            }
+        })
+    }
+
     $("#goList").click(function(){
         window.location.href = "./list.html";
     })
@@ -105,10 +148,29 @@
     }
 
     $("#savePro").click(function(){
+        var imgs = getImgs();
+        if(imgs.length == 0){
+            alert("请至少上传一张图片!");
+            return;
+        }
+        var fImg = imgs[0];
+
+        var tmp = null;
+        var url = "";
+        if(tag == "add"){
+            tmp = {name:encodeURIComponent($("#proName").val()),stock:$("#proStock").val(),price:$("#proPrice").val(),description:encodeURIComponent($("#proDesc").val()),images:JSON.stringify(imgs),firstImg:fImg};
+            url = "/api/product/add";
+        }
+        if(tag == "edit"){
+            var id = getQueryString("id");
+            tmp = {id:id,name:encodeURIComponent($("#proName").val()),stock:$("#proStock").val(),price:$("#proPrice").val(),description:encodeURIComponent($("#proDesc").val()),images:JSON.stringify(imgs),firstImg:fImg};
+            url = "/api/product/update";
+        }
+
         $.ajax({
-            url:"/api/product/add",
+            url:url,
             type:"post",
-            data:{name:$("#proName").val(),stock:$("#proStock").val(),price:$("#proPrice").val(),description:$("#proDesc").val(),images:getImgs()},
+            data:tmp,
             success:function(d){
                 d = eval("("+d+")");
                 if(d.status.code == "1"){
@@ -154,16 +216,21 @@
 
     $("#addFile").on("change",function(e){
         var val = e.target.files || e.dataTransfer.files;
-        for(var i=0;i<val.length;i++){
-            (function(index){
-                var filereader = new FileReader();
-                filereader.onload = function () {
-                    compressImg(this.result,220,function(res){
-                        preImg(res);
-                    })
-                }
-                filereader.readAsDataURL(val[index]);
-            })(i);
+        if(val.length <=9){
+            for(var i=0;i<val.length;i++){
+                (function(index){
+                    var filereader = new FileReader();
+                    filereader.onload = function () {
+                        compressImg(this.result,220,function(res){
+                            preImg(res);
+                        })
+                    }
+                    filereader.readAsDataURL(val[index]);
+                })(i);
+            }
+        }else{
+            alert("最多只允许上次9张图片!")
         }
+
     })
 </script>

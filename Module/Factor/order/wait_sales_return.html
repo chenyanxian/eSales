@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="bg_orange sale_top_nav">
-    <div class="sale_top_nav_l"><img src="../../../resources/images/back.png" class="mt5"/></div>
+    <div class="sale_top_nav_l" id="back"><img src="../../../resources/images/back.png" class="mt5"/></div>
     <div style="margin: 0 61px;">待退货</div>
 </div>
 
@@ -88,13 +88,6 @@
     <div class="orange_btn not_agree">不予退货</div>
 </div>
 
-<div class="footer">
-    <div class="footer_nav">我的</div>
-    <div class="footer_nav">订单</div>
-    <div class="footer_nav footer_nav_hover">商品</div>
-    <div class="footer_nav_last">代销团队</div>
-</div>
-
 <div class="mask">
     <div class="mask_container" id="agree_mask">
         <p class="mt50">同意退货</p>
@@ -113,9 +106,13 @@
             <div class="mask_cancel">取消</div>
         </div>
     </div>
-
 </div>
-
+<!--<div class="footer">-->
+    <!--<div class="footer_nav">我的</div>-->
+    <!--<div class="footer_nav">订单</div>-->
+    <!--<div class="footer_nav footer_nav_hover">商品</div>-->
+    <!--<div class="footer_nav_last">代销团队</div>-->
+<!--</div>-->
 </body>
 </html>
 
@@ -138,5 +135,9 @@
     $('#not_agree_mask .mask_confirm').on('click',function(){
         $('.mask').css('display','none');
         $('#not_agree_mask').css('display','none');
+    })
+
+    $("#back").click(function(){
+        window.location.href = "./order_list.html";
     })
 </script>
